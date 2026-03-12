@@ -10,9 +10,9 @@ function Footer() {
           <h2>GYM<span>RAT</span></h2>
           <p>Elevating your fitness journey with expert-led training, state-of-the-art facilities, and a community dedicated to your success. Join the rat race to greatness.</p>
           <div className="social-icons">
-            <a href="#"><Facebook size={20} /></a>
-            <a href="#"><Instagram size={20} /></a>
-            <a href="#"><Twitter size={20} /></a>
+            <a href="#!"><Facebook size={20} /></a>
+            <a href="#!"><Instagram size={20} /></a>
+            <a href="#!"><Twitter size={20} /></a>
           </div>
         </div>
 
@@ -30,11 +30,11 @@ function Footer() {
         <div className="footer-links">
           <h3>Our Programs</h3>
           <ul>
-            <li><a href="#">Weightlifting</a></li>
-            <li><a href="#">Cardio & Endurance</a></li>
-            <li><a href="#">Yoga & Flexibility</a></li>
-            <li><a href="#">Personal Coaching</a></li>
-            <li><a href="#">Group Workouts</a></li>
+            <li><a href="#!">Weightlifting</a></li>
+            <li><a href="#!">Cardio & Endurance</a></li>
+            <li><a href="#!">Yoga & Flexibility</a></li>
+            <li><a href="#!">Personal Coaching</a></li>
+            <li><a href="#!">Group Workouts</a></li>
           </ul>
         </div>
 
