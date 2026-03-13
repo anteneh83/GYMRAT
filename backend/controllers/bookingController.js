@@ -1,4 +1,5 @@
 const Booking = require('../models/Booking');
+const Notification = require('../models/Notification');
 
 // @desc    Book a session
 // @route   POST /api/bookings
@@ -14,6 +15,20 @@ const bookSession = async (req, res) => {
             timeSlot
         });
 
+        // Generate a Notification for the user making the booking
+        await Notification.create({
+            user: req.user._id,
+            message: `Your booking for ${new Date(date).toLocaleDateString()} at ${timeSlot} is pending confirmation.`,
+            type: 'booking'
+        });
+
+        // Generate a Notification for the requested trainer
+        await Notification.create({
+            user: trainer,
+            message: `New booking request received for ${new Date(date).toLocaleDateString()} at ${timeSlot}. Check your dashboard to approve.`,
+            type: 'booking'
+        });
+
         res.status(201).json(booking);
     } catch (error) {
         res.status(400).json({ message: error.message });
@@ -26,6 +41,18 @@ const bookSession = async (req, res) => {
 const getMyBookings = async (req, res) => {
     try {
         const bookings = await Booking.find({ trainee: req.user._id }).populate('trainer', 'name email');
+        res.json(bookings);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+// @desc    Get trainer bookings
+// @route   GET /api/bookings/trainer-bookings
+// @access  Private (Trainer)
+const getTrainerBookings = async (req, res) => {
+    try {
+        const bookings = await Booking.find({ trainer: req.user._id }).populate('trainee', 'name email');
         res.json(bookings);
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -54,5 +81,6 @@ const updateBookingStatus = async (req, res) => {
 module.exports = {
     bookSession,
     getMyBookings,
+    getTrainerBookings,
     updateBookingStatus
 };

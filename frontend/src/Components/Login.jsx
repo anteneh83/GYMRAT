@@ -19,7 +19,13 @@ const Login = () => {
             const { data } = await API.post('/auth/login', { email, password });
             localStorage.setItem('userInfo', JSON.stringify(data));
             toast.success('Login successful!');
-            navigate('/');
+            if (data.role === 'admin') {
+                navigate('/admin-dashboard');
+            } else if (data.role === 'trainer') {
+                navigate('/trainer-dashboard');
+            } else {
+                navigate('/');
+            }
             window.location.reload();
         } catch (err) {
             toast.error(err.response?.data?.message || 'Invalid email or password');

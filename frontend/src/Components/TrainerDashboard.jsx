@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import API from '../api';
+import Loader from './Loader';
 
 const TrainerDashboard = () => {
     const [bookings, setBookings] = useState([]);
@@ -8,10 +9,7 @@ const TrainerDashboard = () => {
     useEffect(() => {
         const fetchBookings = async () => {
             try {
-                // This would need a specific route for trainers to see their bookings
-                // For now, let's assume getMyBookings works if role is trainer and we filter on backend
-                // or we add a new route /api/bookings/trainer-bookings
-                const { data } = await API.get('/bookings/my-bookings');
+                const { data } = await API.get('/bookings/trainer-bookings');
                 setBookings(data);
                 setLoading(false);
             } catch (error) {
@@ -31,7 +29,7 @@ const TrainerDashboard = () => {
         }
     };
 
-    if (loading) return <div className="dashboard-container">Loading...</div>;
+    if (loading) return <Loader />;
 
     return (
         <div className="dashboard-container">
@@ -51,7 +49,7 @@ const TrainerDashboard = () => {
                 <tbody>
                     {bookings.map(booking => (
                         <tr key={booking._id}>
-                            <td>{booking.trainee.name}</td>
+                            <td>{booking.trainee?.name || 'Deleted User'}</td>
                             <td>{new Date(booking.date).toLocaleDateString()}</td>
                             <td>{booking.timeSlot}</td>
                             <td>

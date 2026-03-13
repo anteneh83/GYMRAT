@@ -1,8 +1,6 @@
 body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-        sans-serif;
+    font-family: 'Outfit', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -237,6 +235,19 @@ nav ul li a {
     letter-spacing: 1px;
     border-radius: 3px;
     transition: 0.2s ease-in-out;
+    position: relative;
+}
+
+nav ul li a.active-link::after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 3px;
+    bottom: 0px;
+    left: 50%;
+    background-color: #FF1414;
+    transform: translateX(-50%);
+    border-radius: 2px;
 }
 
 nav ul li a:hover {
@@ -786,6 +797,99 @@ nav .menu-btn,
     height: 140px;
 }
 
+/* Data Tables */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    background-color: #050505;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid #1a1a1a;
+}
+
+.data-table th,
+.data-table td {
+    padding: 15px 20px;
+    text-align: left;
+    border-bottom: 1px solid #1a1a1a;
+}
+
+.data-table th {
+    background-color: #111;
+    color: #FF1414;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.data-table tbody tr:hover {
+    background-color: #111;
+}
+
+.data-table td {
+    color: #ccc;
+    font-size: 1rem;
+}
+
+/* Action Buttons */
+.action-btn {
+    padding: 8px 15px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background: transparent;
+    color: #fff;
+}
+
+.action-btn.btn-approve {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.action-btn.btn-reject {
+    background-color: #FF1414;
+    border-color: #FF1414;
+}
+
+.action-btn:hover {
+    background-color: transparent;
+}
+
+.action-btn.btn-approve:hover {
+    color: #28a745;
+    border-color: #28a745;
+}
+
+.action-btn.btn-reject:hover {
+    color: #FF1414;
+    border-color: #FF1414;
+}
+
+/* Edit State Inputs */
+.data-table input,
+.data-table select {
+    background-color: #111;
+    border: 1px solid #333 !important;
+    color: #fff;
+    font-family: 'Outfit';
+    padding: 8px;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.data-table input:focus,
+.data-table select:focus {
+    border-color: #FF1414 !important;
+    outline: none;
+}
+
 #contact form input[type="submit"] {
     grid-column: span 2;
     background-color: #FF1414;
@@ -1248,6 +1352,17 @@ ul li a {
     background-color: #333;
     color: #fff;
     border: 1px solid #444;
+    transition: 0.3s;
+}
+
+.auth-form input:focus,
+.auth-form select:focus,
+.auth-form input:hover,
+.auth-form select:hover {
+    border-color: #FF1414;
+    outline: none;
+    box-shadow: 0 0 15px rgba(255, 20, 20, 0.2);
+    transform: scale(1.01);
 }
 
 .auth-form button {

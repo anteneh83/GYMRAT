@@ -5,7 +5,12 @@ const User = require('../models/User');
 // @route   POST /api/auth/register
 // @access  Public
 const registerUser = async (req, res) => {
-    const { name, email, password, role } = req.body;
+    let { name, email, password, role } = req.body;
+
+    // Enforce role to 'trainee' unless explicitly handled by admin route
+    if (role !== 'trainee') {
+        role = 'trainee';
+    }
 
     const userExists = await User.findOne({ email });
 

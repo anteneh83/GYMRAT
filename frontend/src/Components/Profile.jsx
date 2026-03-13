@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import API from '../api';
 import toast from 'react-hot-toast';
+import Loader from './Loader';
 
 const Profile = () => {
     const [progress, setProgress] = useState([]);
@@ -32,7 +33,7 @@ const Profile = () => {
         fetchTraineeData();
     }, []);
 
-    if (loading) return <div className="dashboard-container">Loading...</div>;
+    if (loading) return <Loader />;
 
     const handleUpdateStats = async (e) => {
         e.preventDefault();

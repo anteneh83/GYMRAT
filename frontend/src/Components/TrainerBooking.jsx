@@ -76,7 +76,7 @@ const TrainerBooking = () => {
             <h1>MEET OUR <span>EXPERT TRAINERS</span></h1>
             <p style={{ color: '#ccc', textAlign: 'center', marginBottom: '40px' }}>Train with the best in the industry to achieve your fitness milestones.</p>
             <div className='a-container'>
-                {trainers.map((trainer, index) => (
+                {trainers.filter(t => t.user).map((trainer, index) => (
                     <div key={trainer._id} className='a-box'>
                         <img
                             src={imageMap[`trainer_${(index % 7) + 1}`]}

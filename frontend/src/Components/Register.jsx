@@ -57,7 +57,6 @@ const Register = () => {
                 />
                 <select value={role} onChange={(e) => setRole(e.target.value)}>
                     <option value="trainee">Trainee</option>
-                    <option value="trainer">Trainer</option>
                 </select>
                 <button type="submit" disabled={isSubmitting} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
                     {isSubmitting ? <Loader2 className="spinner" size={18} /> : 'Register'}

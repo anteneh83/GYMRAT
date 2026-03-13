@@ -46,32 +46,32 @@ function NavBar() {
             <ul className='menu'>
                 <li>
                     {isHomePage ? (
-                        <ScrollLink to='main' smooth={true} duration={2000}>Home</ScrollLink>
+                        <ScrollLink to='main' smooth={true} duration={2000} spy={true} activeClass="active-link">Home</ScrollLink>
                     ) : (
-                        <Link to='/'>Home</Link>
+                        <Link to='/' className={location.pathname === '/' ? 'active-link' : ''}>Home</Link>
                     )}
                 </li>
-                {isHomePage && (
+                {!userInfo && isHomePage && (
                     <>
-                        <li><ScrollLink to='features' smooth={true} duration={2000}>Features</ScrollLink></li>
-                        <li><ScrollLink to='presentaion' smooth={true} duration={2000}>Offers</ScrollLink></li>
-                        <li><ScrollLink to='about' smooth={true} duration={2000}>About</ScrollLink></li>
-                        <li><ScrollLink to='contact' smooth={true} duration={2000}>Contact</ScrollLink></li>
+                        <li><ScrollLink to='features' smooth={true} duration={2000} spy={true} activeClass="active-link">Features</ScrollLink></li>
+                        <li><ScrollLink to='presentaion' smooth={true} duration={2000} spy={true} activeClass="active-link">Offers</ScrollLink></li>
+                        <li><ScrollLink to='about' smooth={true} duration={2000} spy={true} activeClass="active-link">About</ScrollLink></li>
+                        <li><ScrollLink to='contact' smooth={true} duration={2000} spy={true} activeClass="active-link">Contact</ScrollLink></li>
                     </>
                 )}
 
                 {userInfo ? (
                     <>
-                        <li><Link to="/profile">Profile</Link></li>
-                        <li><Link to="/notifications">Notifications</Link></li>
-                        {userInfo.role === 'trainer' && <li><Link to="/trainer-dashboard">Dashboard</Link></li>}
-                        {userInfo.role === 'admin' && <li><Link to="/admin-dashboard">Admin</Link></li>}
+                        <li><Link to="/profile" className={location.pathname === '/profile' ? 'active-link' : ''}>Profile</Link></li>
+                        <li><Link to="/notifications" className={location.pathname === '/notifications' ? 'active-link' : ''}>Notifications</Link></li>
+                        {userInfo.role === 'trainer' && <li><Link to="/trainer-dashboard" className={location.pathname === '/trainer-dashboard' ? 'active-link' : ''}>Dashboard</Link></li>}
+                        {userInfo.role === 'admin' && <li><Link to="/admin-dashboard" className={location.pathname === '/admin-dashboard' ? 'active-link' : ''}>Admin</Link></li>}
                         <li><button onClick={logoutHandler} className="logout-btn">Logout</button></li>
                     </>
                 ) : (
                     <>
-                        <li><Link to='/login'>Login</Link></li>
-                        <li><Link to='/register' className='nav-register-btn'>Register</Link></li>
+                        <li><Link to='/login' className={location.pathname === '/login' ? 'active-link' : ''}>Login</Link></li>
+                        <li><Link to='/register' className={`nav-register-btn ${location.pathname === '/register' ? 'active-link' : ''}`}>Register</Link></li>
                     </>
                 )}
             </ul>
