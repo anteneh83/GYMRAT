@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import API from '../api';
 import toast from 'react-hot-toast';
+import Loader from './Loader';
 
 const Membership = () => {
     const [plans, setPlans] = useState([]);
@@ -47,7 +48,7 @@ const Membership = () => {
         }
     };
 
-    if (loading) return <div style={{ color: '#fff', textAlign: 'center', padding: '100px' }}>Loading plans...</div>;
+    if (loading) return <Loader />;
 
     return (
         <div id='presentaion'>

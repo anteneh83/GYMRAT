@@ -64,11 +64,28 @@ const getTrainerBookings = async (req, res) => {
 // @access  Private
 const updateBookingStatus = async (req, res) => {
     try {
-        const booking = await Booking.findById(req.params.id);
+        const booking = await Booking.findById(req.params.id).populate('trainer', 'name');
 
         if (booking) {
-            booking.status = req.body.status || booking.status;
+            const newStatus = req.body.status || booking.status;
+            booking.status = newStatus;
             const updatedBooking = await booking.save();
+
+            // Notify the trainee about the status change
+            const statusMessages = {
+                approved: `Your booking for ${new Date(booking.date).toLocaleDateString()} at ${booking.timeSlot} has been approved! ✅`,
+                cancelled: `Your booking for ${new Date(booking.date).toLocaleDateString()} at ${booking.timeSlot} has been cancelled. ❌`,
+                completed: `Your session on ${new Date(booking.date).toLocaleDateString()} at ${booking.timeSlot} has been marked as completed. 🎉`
+            };
+
+            if (statusMessages[newStatus]) {
+                await Notification.create({
+                    user: booking.trainee,
+                    message: statusMessages[newStatus],
+                    type: 'booking'
+                });
+            }
+
             res.json(updatedBooking);
         } else {
             res.status(404).json({ message: 'Booking not found' });

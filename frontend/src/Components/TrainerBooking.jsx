@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import API from '../api';
 import toast from 'react-hot-toast';
+import Loader from './Loader';
 import trainer1 from '../images/trainer_1.png';
 import trainer2 from '../images/trainer_2.png';
 import trainer3 from '../images/trainer_3.png';
@@ -69,7 +70,7 @@ const TrainerBooking = () => {
         }
     };
 
-    if (loading) return <div>Loading trainers...</div>;
+    if (loading) return <Loader />;
 
     return (
         <div id='features'>
