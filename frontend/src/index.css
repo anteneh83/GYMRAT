@@ -1160,14 +1160,18 @@ nav .menu-btn,
     }
 
     .menu {
-        display: none;
-        position: absolute;
-        top: 65px;
-        left: 0px;
+        display: flex !important;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 260px;
+        height: 100vh;
         background-color: #000000;
-        border-bottom: 4px solid #FF1414;
-        width: 100%;
-        padding: 0px;
+        border-right: 2px solid #FF1414;
+        transition: 0.5s ease-in-out;
+        z-index: 1000;
+        padding-top: 80px;
         margin: 0px;
     }
 
@@ -1178,11 +1182,11 @@ nav .menu-btn,
     nav .menu li a {
         width: 100%;
         height: 40px;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         margin: 0px;
-        padding: 25px;
-        border: 1px solid rgba(38, 38, 38, 0.03);
+        padding: 25px 35px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     nav .menu-icon {
@@ -1191,6 +1195,7 @@ nav .menu-btn,
         padding: 28px 20px;
         position: relative;
         user-select: none;
+        z-index: 1001;
     }
 
     nav .menu-icon .nav-icon {
@@ -1240,7 +1245,7 @@ nav .menu-btn,
     }
 
     nav .menu-btn:checked~.menu {
-        display: block;
+        left: 0;
     }
 }
 
@@ -1504,40 +1509,6 @@ ul li a {
     cursor: pointer;
 }
 
-/* Left Side Sidebar */
-.menu {
-    display: block !important;
-    position: fixed;
-    top: 0;
-    left: -100%;
-    width: 250px;
-    height: 100vh;
-    background-color: #000;
-    border-right: 2px solid #FF1414;
-    transition: 0.5s ease-in-out;
-    z-index: 1000;
-    padding-top: 80px;
-}
-
-nav .menu-btn:checked~.menu {
-    left: 0;
-}
-
-.menu li {
-    width: 100%;
-    text-align: left;
-}
-
-nav .menu li a {
-    justify-content: flex-start !important;
-    padding: 15px 25px !important;
-    border-bottom: 1px solid #111;
-    font-size: 0.9rem !important;
-}
-
-.menu-icon {
-    z-index: 1001;
-}
 
 .error {
     color: #FF1414;
@@ -2179,8 +2150,4 @@ nav .menu li a {
         align-items: center !important;
     }
 
-    /* Sidebar Fix */
-    .menu {
-        width: 260px !important;
-    }
 }
