@@ -78,42 +78,42 @@ function NavBar() {
                 {!isTrainer && !isAdmin && (
                     <li>
                         {isHomePage ? (
-                            <ScrollLink to='main' smooth={true} duration={2000} spy={true} activeClass="active-link">Home</ScrollLink>
+                            <ScrollLink to='main' smooth={true} duration={2000} spy={true} activeClass="active-link" onClick={() => document.getElementById('menu-btn').checked = false}>Home</ScrollLink>
                         ) : (
-                            <Link to='/' className={location.pathname === '/' ? 'active-link' : ''}>Home</Link>
+                            <Link to='/' className={location.pathname === '/' ? 'active-link' : ''} onClick={() => document.getElementById('menu-btn').checked = false}>Home</Link>
                         )}
                     </li>
                 )}
                 {!userInfo && isHomePage && (
                     <>
-                        <li><ScrollLink to='features' smooth={true} duration={2000} spy={true} activeClass="active-link">Features</ScrollLink></li>
-                        <li><ScrollLink to='presentaion' smooth={true} duration={2000} spy={true} activeClass="active-link">Offers</ScrollLink></li>
-                        <li><ScrollLink to='about' smooth={true} duration={2000} spy={true} activeClass="active-link">About</ScrollLink></li>
-                        <li><ScrollLink to='contact' smooth={true} duration={2000} spy={true} activeClass="active-link">Contact</ScrollLink></li>
+                        <li><ScrollLink to='features' smooth={true} duration={2000} spy={true} activeClass="active-link" onClick={() => document.getElementById('menu-btn').checked = false}>Features</ScrollLink></li>
+                        <li><ScrollLink to='presentaion' smooth={true} duration={2000} spy={true} activeClass="active-link" onClick={() => document.getElementById('menu-btn').checked = false}>Offers</ScrollLink></li>
+                        <li><ScrollLink to='about' smooth={true} duration={2000} spy={true} activeClass="active-link" onClick={() => document.getElementById('menu-btn').checked = false}>About</ScrollLink></li>
+                        <li><ScrollLink to='contact' smooth={true} duration={2000} spy={true} activeClass="active-link" onClick={() => document.getElementById('menu-btn').checked = false}>Contact</ScrollLink></li>
                     </>
                 )}
 
                 {userInfo ? (
                     <>
                         {isTrainer && (
-                            <li><Link to="/trainer-dashboard" className={location.pathname === '/trainer-dashboard' ? 'active-link' : ''}>Dashboard</Link></li>
+                            <li><Link to="/trainer-dashboard" className={location.pathname === '/trainer-dashboard' ? 'active-link' : ''} onClick={() => document.getElementById('menu-btn').checked = false}>Dashboard</Link></li>
                         )}
                         <li>
-                            <Link to="/notifications" className={location.pathname === '/notifications' ? 'active-link' : ''} style={{ position: 'relative' }}>
+                            <Link to="/notifications" className={location.pathname === '/notifications' ? 'active-link' : ''} style={{ position: 'relative' }} onClick={() => document.getElementById('menu-btn').checked = false}>
                                 Notifications
                                 {unreadCount > 0 && (
                                     <span className="notification-badge">{unreadCount}</span>
                                 )}
                             </Link>
                         </li>
-                        <li><Link to="/profile" className={location.pathname === '/profile' ? 'active-link' : ''}>Profile</Link></li>
-                        {userInfo.role === 'admin' && <li><Link to="/admin-dashboard" className={location.pathname === '/admin-dashboard' ? 'active-link' : ''}>Admin</Link></li>}
-                        <li><button onClick={logoutHandler} className="logout-btn">Logout</button></li>
+                        <li><Link to="/profile" className={location.pathname === '/profile' ? 'active-link' : ''} onClick={() => document.getElementById('menu-btn').checked = false}>Profile</Link></li>
+                        {userInfo.role === 'admin' && <li><Link to="/admin-dashboard" className={location.pathname === '/admin-dashboard' ? 'active-link' : ''} onClick={() => document.getElementById('menu-btn').checked = false}>Admin</Link></li>}
+                        <li><button onClick={() => { logoutHandler(); document.getElementById('menu-btn').checked = false; }} className="logout-btn">Logout</button></li>
                     </>
                 ) : (
                     <>
-                        <li><Link to='/login' className={location.pathname === '/login' ? 'active-link' : ''}>Login</Link></li>
-                        <li><Link to='/register' className={`nav-register-btn ${location.pathname === '/register' ? 'active-link' : ''}`}>Register</Link></li>
+                        <li><Link to='/login' className={location.pathname === '/login' ? 'active-link' : ''} onClick={() => document.getElementById('menu-btn').checked = false}>Login</Link></li>
+                        <li><Link to='/register' className={`nav-register-btn ${location.pathname === '/register' ? 'active-link' : ''}`} onClick={() => document.getElementById('menu-btn').checked = false}>Register</Link></li>
                     </>
                 )}
             </ul>

@@ -157,11 +157,25 @@ input {
     text-align: center;
     position: relative;
     z-index: 0;
+    padding-top: 80px;
+    /* Space for fixed navbar */
 }
 
 #main .pr-heading h1 {
     font-size: 5rem;
     margin-bottom: 10px;
+}
+
+@media(max-width:768px) {
+    #main .pr-heading h1 {
+        font-size: 3rem;
+    }
+}
+
+@media(max-width:480px) {
+    #main .pr-heading h1 {
+        font-size: 2.2rem;
+    }
 }
 
 #main .details {
@@ -263,11 +277,16 @@ nav .menu-btn,
 }
 
 .name {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     font-family: ' Montserrat';
     width: 100%;
     max-width: 900px;
     padding: 0 20px;
+    margin: 0 auto;
 }
 
 .name span {
@@ -293,6 +312,18 @@ nav .menu-btn,
     margin: 0px;
     letter-spacing: 2px;
     color: #ffffff;
+}
+
+@media(max-width:768px) {
+    .name h1 {
+        font-size: 3rem;
+    }
+}
+
+@media(max-width:480px) {
+    .name h1 {
+        font-size: 2.2rem;
+    }
 }
 
 .header-btns {
@@ -517,6 +548,10 @@ nav .menu-btn,
 }
 
 .pr-heading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     font-family: 'Lato';
     width: 100%;
@@ -546,8 +581,9 @@ nav .menu-btn,
 
 .pr-btns {
     display: flex;
+    justify-content: center;
     margin-top: 40px;
-    margin-left: 35%;
+    gap: 20px;
 }
 
 .pr-btn {
@@ -582,6 +618,24 @@ nav .menu-btn,
     background-color: #000;
 }
 
+@media(max-width:768px) {
+    #about {
+        flex-direction: column;
+        padding: 60px 5%;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .about-text {
+        width: 100% !important;
+    }
+
+    .about-image {
+        width: 100% !important;
+        display: block !important;
+    }
+}
+
 .about-text {
     width: 50%;
     color: #fff;
@@ -605,6 +659,16 @@ nav .menu-btn,
     -webkit-text-stroke: 1px #FF1414;
     -webkit-text-fill-color: transparent;
     transition: 0.5s;
+}
+
+@media(max-width:768px) {
+    .about-text h1 {
+        font-size: 2.2rem;
+    }
+
+    .about-text h1 span {
+        font-size: 2.8rem;
+    }
 }
 
 .about-text h1:hover span {
@@ -671,6 +735,13 @@ nav .menu-btn,
     grid-template-columns: 1.2fr 1fr;
     gap: 80px;
     align-items: flex-start;
+}
+
+@media(max-width:970px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
 }
 
 .contact-form-section h1 {
@@ -798,11 +869,18 @@ nav .menu-btn,
 }
 
 /* Data Tables */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 30px;
+    border-radius: 12px;
+}
+
 .data-table {
     width: 100%;
+    min-width: 600px;
     border-collapse: collapse;
-    margin-top: 20px;
-    margin-bottom: 50px;
     background-color: #050505;
     border-radius: 12px;
     overflow: hidden;
@@ -1190,6 +1268,36 @@ footer {
     margin-bottom: 60px;
 }
 
+@media(max-width:1024px) {
+    .footer-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width:600px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .footer-logo,
+    .footer-links,
+    .footer-contact {
+        align-items: center;
+    }
+
+    .footer-logo h2::after,
+    .footer-links h3::after,
+    .footer-contact h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+}
+
 .footer-logo h2,
 .footer-links h3,
 .footer-contact h3 {
@@ -1333,8 +1441,10 @@ ul li a {
     background-color: #1a1a1a;
     padding: 40px;
     border-radius: 10px;
-    width: 400px;
+    width: 100%;
+    max-width: 400px;
     box-shadow: 0 0 20px rgba(255, 20, 20, 0.2);
+    margin: 20px;
 }
 
 .auth-form h2 {
@@ -1394,6 +1504,41 @@ ul li a {
     cursor: pointer;
 }
 
+/* Left Side Sidebar */
+.menu {
+    display: block !important;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 250px;
+    height: 100vh;
+    background-color: #000;
+    border-right: 2px solid #FF1414;
+    transition: 0.5s ease-in-out;
+    z-index: 1000;
+    padding-top: 80px;
+}
+
+nav .menu-btn:checked~.menu {
+    left: 0;
+}
+
+.menu li {
+    width: 100%;
+    text-align: left;
+}
+
+nav .menu li a {
+    justify-content: flex-start !important;
+    padding: 15px 25px !important;
+    border-bottom: 1px solid #111;
+    font-size: 0.9rem !important;
+}
+
+.menu-icon {
+    z-index: 1001;
+}
+
 .error {
     color: #FF1414;
     text-align: center;
@@ -1424,6 +1569,37 @@ ul li a {
     background-color: #FF1414;
     color: #ffffff;
     box-shadow: 5px 10px 30px rgba(255, 2, 2, 0.336);
+}
+
+/* Dashboard Specific Responsive Adjustments */
+.trainer-registration-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 800px;
+    background-color: #050505;
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid #1a1a1a;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+}
+
+.trainer-bio-textarea {
+    grid-column: 1 / -1;
+    min-height: 120px;
+}
+
+.trainer-submit-btn {
+    grid-column: 1 / -1;
+    width: 100%;
+    border: none;
+}
+
+@media (max-width: 768px) {
+    .trainer-registration-form {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
 }
 
 /* Notification Badge */
@@ -1577,8 +1753,9 @@ ul li a {
     background: #1a1a1a;
     padding: 40px;
     border-radius: 12px;
-    width: 450px;
-    max-width: 90%;
+    width: 100%;
+    max-width: 450px;
+    margin: 20px;
     box-shadow: 0 0 30px rgba(255, 20, 20, 0.3);
     position: relative;
     border: 1px solid #333;
@@ -1768,6 +1945,14 @@ ul li a {
     gap: 20px;
 }
 
+@media(max-width:480px) {
+    .trainer-stats {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+}
+
 .specialization {
     color: #FF1414;
     font-weight: bold;
@@ -1811,4 +1996,191 @@ ul li a {
     background: #FF1414;
     color: #fff !important;
     transform: translateY(-5px);
+}
+
+/* Final Aggressive Mobile Responsiveness Fixes */
+@media screen and (max-width: 768px) {
+
+    html,
+    body {
+        overflow-x: hidden !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        position: relative !important;
+    }
+
+    * {
+        box-sizing: border-box !important;
+    }
+
+    /* Force sections to stay apart and Grow with content */
+    #main,
+    #features,
+    #presentaion,
+    #services,
+    #about,
+    #contact {
+        display: block !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        padding: 120px 15px 60px !important;
+        margin: 0 !important;
+        position: relative !important;
+        overflow: visible !important;
+        float: none !important;
+        clear: both !important;
+        background-attachment: scroll !important;
+        background-size: cover !important;
+        background-position: center !important;
+    }
+
+    /* Hero Reset - NO ABSOLUTE POSITIONING */
+    .name {
+        margin: 0 auto !important;
+        width: 100% !important;
+        padding: 0 !important;
+        display: block !important;
+        position: static !important;
+        left: auto !important;
+        top: auto !important;
+        transform: none !important;
+    }
+
+    .name h1 {
+        font-size: 1.8rem !important;
+        margin: 15px 0 !important;
+        line-height: 1.2 !important;
+        width: 100% !important;
+        text-align: center !important;
+    }
+
+    .name h2 {
+        font-size: 1.2rem !important;
+        width: 100% !important;
+        text-align: center !important;
+        margin-top: 10px !important;
+    }
+
+    .name .details {
+        font-size: 0.9rem !important;
+        margin: 15px auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        text-align: center !important;
+    }
+
+    .header-btns {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        margin-top: 25px !important;
+        gap: 15px !important;
+        padding: 0 !important;
+    }
+
+    .header-btn {
+        margin: 0 !important;
+        width: 200px !important;
+        height: 50px !important;
+        font-size: 1.1rem !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
+    /* Membership Reset */
+    .pr-heading {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+        position: static !important;
+        left: auto !important;
+        top: auto !important;
+        transform: none !important;
+    }
+
+    .plans-container {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        width: 100% !important;
+        margin-top: 40px !important;
+        gap: 40px !important;
+        padding: 0 !important;
+    }
+
+    .plan-card {
+        width: 100% !important;
+        max-width: 320px !important;
+        margin: 0 !important;
+        padding: 40px 20px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        border: 1px solid #333 !important;
+        background: rgba(17, 17, 17, 0.9) !important;
+        position: static !important;
+    }
+
+    .pr-btn {
+        margin: 20px auto 0 !important;
+        width: 200px !important;
+    }
+
+    /* Trainer Grid Reset */
+    .a-container {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        width: 100% !important;
+        gap: 30px !important;
+        padding: 0 !important;
+    }
+
+    .a-box {
+        width: 100% !important;
+        max-width: 320px !important;
+        margin: 0 !important;
+    }
+
+    /* About Section Fix */
+    #about {
+        flex-direction: column !important;
+        padding: 100px 20px !important;
+    }
+
+    .about-image {
+        display: none !important;
+    }
+
+    .about-text {
+        width: 100% !important;
+        padding: 0 !important;
+        text-align: center !important;
+    }
+
+    .about-text h1 span {
+        font-size: 1.8rem !important;
+    }
+
+    /* Footer Reset */
+    .footer-container {
+        grid-template-columns: 1fr !important;
+        text-align: center !important;
+    }
+
+    .footer-logo,
+    .footer-links,
+    .footer-contact {
+        align-items: center !important;
+    }
+
+    /* Sidebar Fix */
+    .menu {
+        width: 260px !important;
+    }
 }

@@ -119,30 +119,32 @@ const Profile = () => {
             </div>
 
             <h2>My Bookings</h2>
-            <table className="data-table">
-                <thead>
-                    <tr>
-                        <th>Trainer</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {bookings.map(booking => (
-                        <tr key={booking._id}>
-                            <td>{booking.trainer.name}</td>
-                            <td>{new Date(booking.date).toLocaleDateString()}</td>
-                            <td>{booking.timeSlot}</td>
-                            <td>
-                                <span className={`status-badge status-${booking.status.toLowerCase()}`}>
-                                    {booking.status}
-                                </span>
-                            </td>
+            <div className="table-container">
+                <table className="data-table">
+                    <thead>
+                        <tr>
+                            <th>Trainer</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Status</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {bookings.map(booking => (
+                            <tr key={booking._id}>
+                                <td>{booking.trainer.name}</td>
+                                <td>{new Date(booking.date).toLocaleDateString()}</td>
+                                <td>{booking.timeSlot}</td>
+                                <td>
+                                    <span className={`status-badge status-${booking.status.toLowerCase()}`}>
+                                        {booking.status}
+                                    </span>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };
